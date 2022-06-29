@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "AddCar";
+}
+
+<h2>Add Car</h2>
+
+<form action="" method="post">
+    Name: <input type="text" name="Name" class="form-control" />
+    @Html.ValidationMessage("Name", new { @class = "text-danger" })<br />
+
+    Model: <input type="text" name="Model" class="form-control" />
+    @Html.ValidationMessage("Model", new { @class = "text-danger" })<br>
+
+    Regristration Year: <input type="text" name="Reg_year" class="form-control" />
+    @Html.ValidationMessage("Reg_year", new { @class = "text-danger" })<br />
+
+    Mileage: <input type="text" name="Mileage" class="form-control" />
+    @Html.ValidationMessage("Mileage", new { @class = "text-danger" })<br />
+
+    Rent: <input type="text" name="Rent" class="form-control" />
+    @Html.ValidationMessage("Rent", new { @class = "text-danger" })<br />
+    
+    Description:<textarea name="Description" rows="4" cols="50" class="form-control" ></textarea>
+    @Html.ValidationMessage("Description", new { @class = "text-danger" })<br>
+
+    <input type="submit" class="btn btn-success" />
+</form>
+

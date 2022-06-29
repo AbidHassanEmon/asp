@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "ViewProfile";
+}
+@if (TempData["msg"] != null)
+{
+<span class="text-warning"><center>@TempData["Msg"]</center></span>
+}
+<h2>User Profile</h2>
+<br />
+ Name:@Model.Name
+<br />
+<br />
+ Email:@Model.Email
+<br />
+<br />
+ Dob:@Model.Dob
+<br />
+<br />
+ Address:@Model.Address
+<br />
+<br />
+ Lisence No:@Model.Lisence_no
+<br />
+<br />
+ User Name:@Model.User_name
+<br />
+<br />
+
+<button><a href="../home/UpdateProfile">Update Profile</a></button>

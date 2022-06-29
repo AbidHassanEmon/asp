@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "ChanePass";
+}
+<span class="text-danger">@TempData["Msg"]</span>
+<h2>Change PassWord</h2>
+
+<form action="" method="post">
+
+    Current Password: <input type="password" name="Password" class="form-control" />
+
+    @Html.ValidationMessage("Password", new { @class = "text-danger" })<br />
+
+
+    New Password: <input type="password" name="NPassword" class="form-control" />
+    @Html.ValidationMessage("NPassword", new { @class = "text-danger" })<br />
+
+    Retype new Password: <input type="password" name="NNPassword" class="form-control" />
+    @Html.ValidationMessage("NNPassword", new { @class = "text-danger" })<br>
+
+    <input type="submit" class="btn btn-success" />
+
+</form>

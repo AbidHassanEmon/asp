@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<span class="text-warning"><center>@TempData["Msg"]</center></span>
+<form action="" method="post">
+
+    Email: <input type="email" name="Email" class="form-control" />
+    @Html.ValidationMessage("Email", new { @class = "text-danger" })<br />
+
+    <input type="submit" class="btn btn-success" />
+
+</form>
+

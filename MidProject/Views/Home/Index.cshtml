@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<h2>Login</h2>
+@if (TempData["Msg"] != null)
+{
+    <span class="text-danger">@TempData["Msg"]</span>
+}
+<form action="" method="post">
+    <input type="text" name="Username" placeholder="Enter Your Username" class="form-control" /> 
+    @Html.ValidationMessage("Username", new { @class = "text-danger" })<br />
+    <input type="password" name="Password" placeholder="Enter Your Password" class="form-control" /> 
+    @Html.ValidationMessage("Password", new { @class = "text-danger" })<br />
+
+    <input type="submit" name="Login" value="Login" class="btn btn-success" />
+
+</form>
+<br />
+<a  href="/User/Index">Create your new account !</a><br /><br />
+<a  href="/Mail/Index">Forget password !</a>

@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Add Admin</h2>
+
+<form action="" method="post">
+
+    Name: <input type="text" name="Name" class="form-control" />
+    @Html.ValidationMessage("Name", new { @class = "text-danger" })<br />
+
+    Email: <input type="email" name="Email" class="form-control" />
+    @Html.ValidationMessage("Email", new { @class = "text-danger" })<br />
+
+    Dob: <input type="date" name="Dob" class="form-control" />
+    @Html.ValidationMessage("Dob", new { @class = "text-danger" })<br />
+
+    Address: <input type="text" name="Address" class="form-control" />
+    @Html.ValidationMessage("address", new { @class = "text-danger" })<br>
+
+    Lisence No: <input type="text" name="lisence_no" class="form-control" />
+    @Html.ValidationMessage("lisence_no", new { @class = "text-danger" })<br>
+
+    User Name: <input type="text" name="User_name" class="form-control" />
+    @Html.ValidationMessage("User_name", new { @class = "text-danger" })<br>
+
+    Password: <input type="password" name="Password" class="form-control" />
+    @Html.ValidationMessage("Password", new { @class = "text-danger" })<br />
+
+    <input type="submit" class="btn btn-success" />
+</form>

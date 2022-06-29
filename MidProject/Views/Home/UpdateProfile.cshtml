@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "UpdateProfile";
+}
+
+<h2>UpdateProfile</h2>
+
+<form action="" method="post">
+
+    Name: <input type="text" name="Name" value="@Model.Name" class="form-control" />
+    @Html.ValidationMessage("Name", new { @class = "text-danger" })<br />
+
+    Email: <input type="email" name="Email" value="@Model.Email" class="form-control" />
+    @Html.ValidationMessage("Email", new { @class = "text-danger" })<br />
+
+    Dob: <input type="text" name="Dob" value="@Model.Dob" class="form-control" />
+    @Html.ValidationMessage("Dob", new { @class = "text-danger" })<br />
+
+    Address: <input type="text" name="Address" value="@Model.Address"class="form-control" />
+    @Html.ValidationMessage("address", new { @class = "text-danger" })<br>
+
+    Lisence No: <input type="text" name="Lisence_no" value="@Model.Lisence_no" class="form-control" />
+    @Html.ValidationMessage("Lisence_no", new { @class = "text-danger" })<br>
+
+    <input type="submit" class="btn btn-success" />
+</form>
