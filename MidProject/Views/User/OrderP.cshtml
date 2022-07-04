@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "OrderP";
+}
+
+<h2>Order Process</h2>
+<form action="" method="post">
+
+    cid<input type="text" name="Car_id" value="@Convert.ToInt32(ViewBag.Id)" class="form-control" />
+    <br />
+    uid<input type="text" name="User_id" value="@Convert.ToInt32(Session["User_id"])" class="form-control" />
+    <br />
+    PickUp Time:
+    <input type="datetime-local" name="Pickup_time" class="form-control" />
+    <br />
+
+    Return Time:
+    <input type="datetime-local" name="Return_time" class="form-control" />
+    <br />
+
+    <input type="submit" class="btn btn-success" />
+</form>

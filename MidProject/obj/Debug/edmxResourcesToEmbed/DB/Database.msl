@@ -31,5 +31,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Rents">
+      <EntityTypeMapping TypeName="Project_DBModel.Rent">
+        <MappingFragment StoreEntitySet="Rents">
+          <ScalarProperty Name="Total_fear" ColumnName="Total_fear" />
+          <ScalarProperty Name="Return_time" ColumnName="Return_time" />
+          <ScalarProperty Name="Pickup_time" ColumnName="Pickup_time" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="Car_id" ColumnName="Car_id" />
+          <ScalarProperty Name="Rent_id" ColumnName="Rent_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

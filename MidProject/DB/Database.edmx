@@ -17,6 +17,17 @@
           <Property Name="Rent" Type="int" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="Rents">
+          <Key>
+            <PropertyRef Name="Rent_id" />
+          </Key>
+          <Property Name="Rent_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Car_id" Type="int" Nullable="false" />
+          <Property Name="User_id" Type="int" Nullable="false" />
+          <Property Name="Pickup_time" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Return_time" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Total_fear" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="User_id" />
@@ -33,9 +44,42 @@
           <Property Name="Otp" Type="int" />
           <Property Name="Otp_expired" Type="datetime" />
         </EntityType>
+        <Association Name="FK_Rents_Cars">
+          <End Role="Cars" Type="Self.Cars" Multiplicity="1" />
+          <End Role="Rents" Type="Self.Rents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars">
+              <PropertyRef Name="Car_id" />
+            </Principal>
+            <Dependent Role="Rents">
+              <PropertyRef Name="Car_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rents_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Rents" Type="Self.Rents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="User_id" />
+            </Principal>
+            <Dependent Role="Rents">
+              <PropertyRef Name="User_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Project_DBModelStoreContainer">
           <EntitySet Name="Cars" EntityType="Self.Cars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rents" EntityType="Self.Rents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Rents_Cars" Association="Self.FK_Rents_Cars">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="Rents" EntitySet="Rents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rents_Users" Association="Self.FK_Rents_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Rents" EntitySet="Rents" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -52,10 +96,20 @@
           <Property Name="Mileage" Type="Int32" Nullable="false" />
           <Property Name="Rent" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Rents" Relationship="Project_DBModel.FK_Rents_Cars" FromRole="Car" ToRole="Rent" />
         </EntityType>
         <EntityContainer Name="Project_DBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cars" EntityType="Self.Car" />
           <EntitySet Name="Users" EntityType="Project_DBModel.User" />
+          <EntitySet Name="Rents" EntityType="Project_DBModel.Rent" />
+          <AssociationSet Name="FK_Rents_Cars" Association="Project_DBModel.FK_Rents_Cars">
+            <End Role="Car" EntitySet="Cars" />
+            <End Role="Rent" EntitySet="Rents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rents_Users" Association="Project_DBModel.FK_Rents_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Rent" EntitySet="Rents" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -72,7 +126,45 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Otp" Type="Int32" />
           <Property Name="Otp_expired" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Rents" Relationship="Project_DBModel.FK_Rents_Users" FromRole="User" ToRole="Rent" />
         </EntityType>
+        <EntityType Name="Rent">
+          <Key>
+            <PropertyRef Name="Rent_id" />
+          </Key>
+          <Property Name="Rent_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Car_id" Type="Int32" Nullable="false" />
+          <Property Name="User_id" Type="Int32" Nullable="false" />
+          <Property Name="Pickup_time" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Return_time" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Total_fear" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Car" Relationship="Project_DBModel.FK_Rents_Cars" FromRole="Rent" ToRole="Car" />
+          <NavigationProperty Name="User" Relationship="Project_DBModel.FK_Rents_Users" FromRole="Rent" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Rents_Cars">
+          <End Type="Project_DBModel.Car" Role="Car" Multiplicity="1" />
+          <End Type="Project_DBModel.Rent" Role="Rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="Car_id" />
+            </Principal>
+            <Dependent Role="Rent">
+              <PropertyRef Name="Car_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rents_Users">
+          <End Type="Project_DBModel.User" Role="User" Multiplicity="1" />
+          <End Type="Project_DBModel.Rent" Role="Rent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_id" />
+            </Principal>
+            <Dependent Role="Rent">
+              <PropertyRef Name="User_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -106,6 +198,18 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="User_id" ColumnName="User_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rents">
+            <EntityTypeMapping TypeName="Project_DBModel.Rent">
+              <MappingFragment StoreEntitySet="Rents">
+                <ScalarProperty Name="Total_fear" ColumnName="Total_fear" />
+                <ScalarProperty Name="Return_time" ColumnName="Return_time" />
+                <ScalarProperty Name="Pickup_time" ColumnName="Pickup_time" />
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+                <ScalarProperty Name="Car_id" ColumnName="Car_id" />
+                <ScalarProperty Name="Rent_id" ColumnName="Rent_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

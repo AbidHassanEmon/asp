@@ -2,6 +2,80 @@
 @{
     ViewBag.Title = "AdminDash";
 }
+
 <span class="text-warning"><center>@TempData["Msg"]</center></span>
 <h2>Admin Dash</h2>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
+<figure class="highcharts-figure">
+    <div id="container"></div>
+    <p class="highcharts-description">
+        <center>The Rents According to the Years</center>
+    </p>
+</figure>
+
+<script>
+    var c = Number("@ViewBag.sum");
+    Highcharts.chart('container', {
+
+        title: {
+            text: 'Revenue Form Rents by Years'
+        },
+
+        subtitle: {
+            text: 'Bla Bla Bla'
+        },
+
+        yAxis: {
+            title: {
+                text: 'Number of Sales'
+            }
+        },
+
+        xAxis: {
+            accessibility: {
+                rangeDescription: 'For the year'
+            }
+        },
+
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle'
+        },
+
+        plotOptions: {
+            series: {
+                label: {
+                    connectorAllowed: false
+                },
+                pointStart: 2015
+            }
+        },
+
+        series: [{
+            name: 'Revenue',
+            data: [4393, 5250, 5717, 6968, 9031, 11991, 13133,c]
+        }],
+
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+
+    });
+</script>

@@ -12,6 +12,17 @@
     <Property Name="Rent" Type="int" Nullable="false" />
     <Property Name="Description" Type="varchar" MaxLength="100" />
   </EntityType>
+  <EntityType Name="Rents">
+    <Key>
+      <PropertyRef Name="Rent_id" />
+    </Key>
+    <Property Name="Rent_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Car_id" Type="int" Nullable="false" />
+    <Property Name="User_id" Type="int" Nullable="false" />
+    <Property Name="Pickup_time" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Return_time" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Total_fear" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="Users">
     <Key>
       <PropertyRef Name="User_id" />
@@ -28,8 +39,41 @@
     <Property Name="Otp" Type="int" />
     <Property Name="Otp_expired" Type="datetime" />
   </EntityType>
+  <Association Name="FK_Rents_Cars">
+    <End Role="Cars" Type="Self.Cars" Multiplicity="1" />
+    <End Role="Rents" Type="Self.Rents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cars">
+        <PropertyRef Name="Car_id" />
+      </Principal>
+      <Dependent Role="Rents">
+        <PropertyRef Name="Car_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rents_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Rents" Type="Self.Rents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="Rents">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="Project_DBModelStoreContainer">
     <EntitySet Name="Cars" EntityType="Self.Cars" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rents" EntityType="Self.Rents" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Rents_Cars" Association="Self.FK_Rents_Cars">
+      <End Role="Cars" EntitySet="Cars" />
+      <End Role="Rents" EntitySet="Rents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rents_Users" Association="Self.FK_Rents_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Rents" EntitySet="Rents" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

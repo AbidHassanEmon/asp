@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "viewOrders";
+}
+
+<h2><center class="text-danger">Rent Hostory</center></h2>
+<button class="success">@Html.ActionLink("Print_Rent_history", "PrintOrderList", "Admin", new { @target = "_blank" })</button>
+<br /><br />
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>User_Id</th>
+        <th>Car_Id</th>
+        <th>Pickup_Date</th>
+        <th>Return_Date</th>
+        <th>Rent</th>
+        
+    </tr>
+    @foreach (var p in Model)
+    {
+        <tr>
+            <td>@p.Rent_id</td>
+            <td>@p.Car_id</td>
+            <td>@p.User_id</td>
+            <td>@p.Pickup_time</td>
+            <td>@p.Return_time</td>
+            <td>@p.Total_fear</td>
+            
+        </tr>
+    }
+</table>

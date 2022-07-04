@@ -10,7 +10,7 @@
 
 <form action="" method="post">
 
-    <input type="text" name="Id" value="@ViewBag.Id" class="form-control" /><br />
+    <input type="hidden" name="Id" value="@ViewBag.Id" class="form-control" /><br />
 
     OTP: <input type="text" name="OTP" class="form-control" />
     @Html.ValidationMessage("OTP", new { @class = "text-danger" })<br />

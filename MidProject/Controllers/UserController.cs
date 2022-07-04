@@ -43,9 +43,51 @@ namespace MidProject.Controllers
             return RedirectToAction("Index","Home");
         }
 
+        [HttpGet]
         public ActionResult UserDash()
         {
+            var db = new Project_DBEntities();
+            var cars = db.Cars.ToList();
+
+            return View(cars);
+
+        }
+
+        [HttpGet]
+        public ActionResult OrderP(int id)
+        {
+            ViewBag.Id = id;
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult OrderP(Rent r)
+        {
+            var db = new Project_DBEntities();
+            var Rent = (from p in db.Cars where p.Car_id == r.Car_id select p.Rent).SingleOrDefault();
+            
+            var date = r.Pickup_time;
+            var rDate = r.Return_time;
+            var s = Convert.ToDateTime(date);
+            var Re=Convert.ToDateTime(rDate);
+            var Day = Convert.ToInt32(Re.Subtract(s).TotalDays);
+            int Total = Rent * Day;
+            var R = new Rent()
+            {
+                Car_id = r.Car_id,
+                User_id = r.User_id,
+                Pickup_time = date,
+                Return_time = rDate,
+                Total_fear = Total
+
+            };
+
+            db.Rents.Add(R);
+            
+            db.SaveChanges();
+           
+            TempData["Msg"] = "Rents Successfull";
+            return RedirectToAction("UserDash", "User");
         }
     }
 }

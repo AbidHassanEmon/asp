@@ -31,12 +31,13 @@ namespace MidProject.Controllers
             var data = (from e in entities.Users
                         where e.Email.Equals(f.Email)
                         select e).FirstOrDefault();
-            var Oid = data.User_id;
+            
             if (data == null)
             {
                 TempData["Msg"] = "Invalid Credentials";
                 return View();
             }
+            var Oid = data.User_id;
             Random r = new Random();
             var x = r.Next(99999, 1000000).ToString();
 

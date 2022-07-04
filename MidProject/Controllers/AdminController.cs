@@ -1,4 +1,6 @@
-﻿using MidProject.DB;
+﻿using MidProject.Auth;
+using MidProject.DB;
+using Rotativa;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +9,11 @@ using System.Web.Mvc;
 
 namespace MidProject.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
+        
+        [AdminAccess]
         // GET: Admin
         [HttpGet]
         public ActionResult Index()
@@ -38,10 +43,34 @@ namespace MidProject.Controllers
             db.SaveChanges();
             return RedirectToAction("Index","Home");
         }
-        [Authorize]
+        
         public ActionResult AdminDash()
         {
+            var db = new Project_DBEntities();
+            var sales = (from p in db.Rents select p.Total_fear).Sum();
+            ViewBag.sum = sales;
             return View();
         }
+        public ActionResult viewOrders()
+        {
+            var db = new Project_DBEntities();
+            var Rent = db.Rents.ToList();
+
+            return View(Rent);
+        }
+        public ActionResult PrintOrderList()
+        {
+            var report = new ActionAsPdf("pdfview");
+            return report;
+        }
+
+        public ActionResult pdfview()
+        {
+            var db = new Project_DBEntities();
+            var Rent = db.Rents.ToList();
+
+            return View(Rent);
+        }
+
     }
-}
+    }

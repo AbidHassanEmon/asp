@@ -1,0 +1,42 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <center class="text-danger"><h1>Rent history</h1></center>
+    <div>
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th>User_Id</th>
+                <th>Car_Id</th>
+                <th>Pickup_Date</th>
+                <th>Return_Date</th>
+                <th>Rent</th>
+
+            </tr>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.Rent_id</td>
+                    <td>@p.Car_id</td>
+                    <td>@p.User_id</td>
+                    <td>@p.Pickup_time</td>
+                    <td>@p.Return_time</td>
+                    <td>@p.Total_fear</td>
+
+                </tr>
+            }
+        </table>S
+    </div>
+</body>
+</html>

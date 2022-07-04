@@ -7,6 +7,9 @@
       <Diagram DiagramId="8f8332eb32554ed0b52f8da81b9eb665" Name="Diagram1">
         <EntityTypeShape EntityType="Project_DBModel.Car" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Project_DBModel.User" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Project_DBModel.Rent" Width="1.5" PointX="5.625" PointY="1.125" />
+        <AssociationConnector Association="Project_DBModel.FK_Rents_Cars" />
+        <AssociationConnector Association="Project_DBModel.FK_Rents_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

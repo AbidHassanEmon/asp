@@ -15,6 +15,12 @@ namespace MidProject.DB
 
     public partial class Car
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Car()
+        {
+            this.Rents = new HashSet<Rent>();
+        }
+    
         public int Car_id { get; set; }
         [Required]
         public string Name { get; set; }
@@ -28,5 +34,8 @@ namespace MidProject.DB
         public int Rent { get; set; }
         [Required]
         public string Description { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rent> Rents { get; set; }
     }
 }

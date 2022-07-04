@@ -5,3 +5,32 @@
 <span class="text-warning"><center>@TempData["Msg"]</center></span>
 <h2>User Dash</h2>
 
+<center><h1 class="text-danger"><u>Rent Your Car</u></h1> </center>
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Model</th>
+        <th>Reg_Year</th>
+        <th>Mileage</th>
+        <th>Rent</th>
+        <th>Discription</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var p in Model)
+    {
+        <tr>
+            <td>@p.Car_id</td>
+            <td>@p.Name</td>
+            <td>@p.Model</td>
+            <td>@p.Reg_year</td>
+            <td>@p.Mileage</td>
+            <td>@p.Rent</td>
+            <td>@p.Description</td>
+            <td>
+                <button>@Html.ActionLink("Proceed to Rent", "OrderP", new { id = p.Car_id })</button>
+            </td>
+        </tr>
+    }
+</table>

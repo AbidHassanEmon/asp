@@ -16,12 +16,17 @@ namespace MidProject.DB
 
     public partial class User
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public User()
+        {
+            this.Rents = new HashSet<Rent>();
+        }
+    
         public int User_id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
         [DataType(DataType.EmailAddress)]
-       // [UniqueEmail]
         public string Email { get; set; }
         [Required]
         [Over18]
@@ -39,5 +44,8 @@ namespace MidProject.DB
         public string Password { get; set; }
         public Nullable<int> Otp { get; set; }
         public Nullable<System.DateTime> Otp_expired { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rent> Rents { get; set; }
     }
 }
