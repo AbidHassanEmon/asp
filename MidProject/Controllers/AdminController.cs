@@ -48,6 +48,10 @@ namespace MidProject.Controllers
         {
             var db = new Project_DBEntities();
             var sales = (from p in db.Rents select p.Total_fear).Sum();
+            var user = (from s in db.Users select s).Count();
+            var car= (from s in db.Cars select s).Count();
+            ViewBag.Carcount = car;
+            ViewBag.Ucount = user;
             ViewBag.sum = sales;
             return View();
         }

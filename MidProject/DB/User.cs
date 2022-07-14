@@ -21,7 +21,7 @@ namespace MidProject.DB
         {
             this.Rents = new HashSet<Rent>();
         }
-    
+
         public int User_id { get; set; }
         [Required]
         public string Name { get; set; }

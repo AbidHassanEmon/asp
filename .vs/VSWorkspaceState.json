@@ -3,9 +3,8 @@
     "",
     "\\MidProject",
     "\\MidProject\\Controllers",
-    "\\MidProject\\Views",
-    "\\MidProject\\Views\\Admin"
+    "\\MidProject\\DB"
   ],
-  "SelectedNode": "\\MidProject\\Views\\Admin\\pdfview.cshtml",
+  "SelectedNode": "\\MidProject\\DB\\User.cs",
   "PreviewInSolutionExplorer": false
 }

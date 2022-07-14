@@ -21,8 +21,6 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home") </li>
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Change Password", "ChanePass", "Home") </li>
@@ -33,6 +31,8 @@
                             <li> @Html.ActionLink("Show Order", "viewOrders", "Admin")</li>
                         }
                     }
+                    <li>@Html.ActionLink("Contact", "Contact", "Home") </li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
                 </ul>
                 <div class="navbar-right">
                     <ul class="nav navbar-nav">
@@ -53,7 +53,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <center><p>&copy; @DateTime.Now.Year - My ASP.NET Application</p></center>
         </footer>
     </div>
 

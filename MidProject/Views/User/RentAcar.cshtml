@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "RentAcar";
+}
+
+<h2>Rent A car</h2>
+
+<form action="RentAcar" method="get">
+
+    Pick Up Date: <input type="datetime-local" name="Pdate" class="form-control" />
+    @Html.ValidationMessage("Pdate", new { @class = "text-danger" })<br />
+
+    Return Date: <input type="datetime-local" name="Rdate" class="form-control" />
+    @Html.ValidationMessage("Rdate", new { @class = "text-danger" })<br />
+
+    <input type="submit" class="btn btn-success" value="Search"/>
+</form>
+<br />
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Model</th>
+        <th>Reg_Year</th>
+        <th>Mileage</th>
+        <th>Rent</th>
+        <th>Discription</th>
+        <th>Action</th>
+    </tr>
+    @if (Model != null)
+    {
+
+        foreach (var p in Model.Car)
+        {
+            <tr>
+                <td>@p.Car_id</td>
+                <td>@p.Name</td>
+                <td>@p.Model</td>
+                <td>@p.Reg_year</td>
+                <td>@p.Mileage</td>
+                <td>@p.Rent</td>
+                <td>@p.Description</td>
+                <td>
+                    <button>@Html.ActionLink("Proceed to Rent", "OrderP", new { id = p.Car_id })</button>
+                </td>
+            </tr>
+
+        }
+
+    }
+</table>

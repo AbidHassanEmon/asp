@@ -135,8 +135,8 @@
           <Property Name="Rent_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Car_id" Type="Int32" Nullable="false" />
           <Property Name="User_id" Type="Int32" Nullable="false" />
-          <Property Name="Pickup_time" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Return_time" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pickup_time" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Return_time" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Total_fear" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Car" Relationship="Project_DBModel.FK_Rents_Cars" FromRole="Rent" ToRole="Car" />
           <NavigationProperty Name="User" Relationship="Project_DBModel.FK_Rents_Users" FromRole="Rent" ToRole="User" />
